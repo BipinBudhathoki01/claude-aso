@@ -198,6 +198,8 @@ flowchart LR
 
 Help with real-world runtime testing, source-backed policy updates, useful audit examples, localization, or future read-only store connectors.
 
+Start with the [welcome discussion](https://github.com/BipinBudhathoki01/claude-aso/discussions/1), [first PR guide](https://github.com/BipinBudhathoki01/claude-aso/discussions/2), and [community roadmap](https://github.com/BipinBudhathoki01/claude-aso/discussions/3). Pick a [good first issue](https://github.com/BipinBudhathoki01/claude-aso/labels/good%20first%20issue) or [help wanted task](https://github.com/BipinBudhathoki01/claude-aso/labels/help%20wanted).
+
 - [Report a bug or suggest a feature](https://github.com/BipinBudhathoki01/claude-aso/issues)
 - [Discuss workflows](https://github.com/BipinBudhathoki01/claude-aso/discussions)
 - Read [contribution guidance](CONTRIBUTING.md), [community conduct](CODE_OF_CONDUCT.md), and [security reporting](SECURITY.md).
