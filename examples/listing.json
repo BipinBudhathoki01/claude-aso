@@ -1,0 +1,15 @@
+{
+  "appName": "Focus Garden",
+  "playTitle": "Focus Garden: Study Timer",
+  "playShortDescription": "Plan focused study sessions with a simple timer and daily progress.",
+  "playFullDescription": "Set a study timer, plan your sessions, and review daily progress.",
+  "playWhatsNew": "Improved timer controls and accessibility.",
+  "playCrashRatePct": 0.4,
+  "playAnrRatePct": 0.1,
+  "iosName": "Focus Garden",
+  "iosSubtitle": "Study Timer & Daily Progress",
+  "iosKeywords": "pomodoro,concentration,revision,routine",
+  "iosPromotionalText": "Make room for a focused study session today.",
+  "iosDescription": "Plan focused study sessions with a timer and daily progress.",
+  "iosWhatsNew": "Improved timer controls and accessibility."
+}

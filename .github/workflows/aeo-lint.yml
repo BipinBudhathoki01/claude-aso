@@ -1,0 +1,25 @@
+name: Claude AEO CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate plugin manifests & limits JSON
+        run: |
+          python3 -m json.tool .claude-plugin/plugin.json > /dev/null
+          python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
+          python3 -m json.tool data/store-limits.json > /dev/null
+      - name: Check Python & Bash script syntax
+        run: |
+          python3 -m py_compile scripts/aeo_lint.py scripts/fetch_appstore.py
+          bash -n install.sh uninstall.sh

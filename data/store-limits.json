@@ -1,0 +1,27 @@
+{
+  "playStore": {
+    "titleMax": 30,
+    "shortDescriptionMax": 80,
+    "fullDescriptionMax": 4000,
+    "whatsNewMax": 500,
+    "recommendedReplyMax": 350,
+    "vitalsThresholds": {
+      "crashRateMaxPct": 1.09,
+      "anrRateMaxPct": 0.47
+    }
+  },
+  "appStore": {
+    "nameMax": 30,
+    "subtitleMax": 30,
+    "keywordsMax": 100,
+    "promotionalTextMax": 170,
+    "descriptionMax": 4000,
+    "whatsNewMax": 4000
+  },
+  "sources": {
+    "verifiedOn": "2026-11-15",
+    "googlePlay": "https://support.google.com/googleplay/android-developer/answer/9859152",
+    "androidVitals": "https://support.google.com/googleplay/android-developer/answer/9844486",
+    "apple": "https://developer.apple.com/app-store/product-page/"
+  }
+}

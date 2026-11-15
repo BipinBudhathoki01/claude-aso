@@ -1,0 +1,27 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-aeo-marketplace",
+  "owner": {
+    "name": "Claude AEO"
+  },
+  "metadata": {
+    "description": "Universal App Ecosystem & Store Optimization (AEO/ASO) plugin for Claude Code. 12 sub-skills and 10 specialized sub-agents for Google Play Store, Apple App Store, review management, Android Vitals, and AI discovery (GEO)."
+  },
+  "plugins": [
+    {
+      "name": "app-store-aeo",
+      "source": "./",
+      "description": "Manage Play Store and App Store listings, audit character budgets, analyze & reply to reviews, optimize keyword rankings, and boost AI assistant citations.",
+      "category": "marketing",
+      "keywords": [
+        "aso",
+        "aeo",
+        "play-store",
+        "app-store",
+        "reviews",
+        "android-vitals",
+        "geo"
+      ]
+    }
+  ]
+}
