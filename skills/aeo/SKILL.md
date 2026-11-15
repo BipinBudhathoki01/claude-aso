@@ -31,3 +31,9 @@ Spawn specialized sub-agents in parallel:
 - `agents/aeo-geo.md`
 
 If delegation is unavailable, apply the specialist checklists sequentially. Report only tools and agents actually executed. Accept plain-language requests when slash commands are unavailable.
+
+## Command routing
+
+Read `data/commands.json` for the command-to-skill and specialist map; load only the requested skill. For a full audit, start with the applicable store, vitals, keywords, GEO, and policy checklists. Include reviews, screenshots, localization, competitors, and monetization when relevant evidence is provided. Summarize missing evidence instead of filling it with estimates. Produce the deterministic report through the reporting checklist, then add clearly labeled model recommendations.
+
+`aeo report` generates an offline metadata report. `aeo compare` compares two supplied listing files. `aeo policy` reviews supplied claims against official policy sources. `aeo experiments` prepares a test brief, not a live test. These are natural-language intents routed by the host; they are not standalone terminal executables.

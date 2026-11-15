@@ -1,13 +1,25 @@
-# Claude AEO Command Reference
+# Command reference
 
-- `/aeo audit <target>`: Full cross-store audit across Play Store, App Store, Reviews, Vitals, and AI GEO.
-- `/aeo playstore <package-id>`: Google Play Console listing, CSLs, and Play policy compliance check.
-- `/aeo appstore <app-id>`: Apple App Store Connect 30/30/100 optimization, CPPs, and In-App Events.
-- `/aeo reviews <file>`: Cluster bugs/feature requests/paywall churn and generate ARC-compliant replies.
-- `/aeo keywords <seeds>`: Cross-store keyword intent mapping and secondary locale expansion.
-- `/aeo vitals <metrics>`: Android Vitals & iOS binary stability gate diagnostics.
-- `/aeo geo <url>`: AI Answer Engine citation & SoftwareApplication JSON-LD readiness.
-- `/aeo screenshots`: First-3-screenshot conversion and readability audit.
-- `/aeo competitor <id1> <id2>`: Head-to-head store positioning and keyword gap teardown.
-- `/aeo monetization`: Paywall friction analysis from 1–3 star reviews + IAP display indexing.
-- `/aeo release-notes`: Release note copywriting that drives re-engagement and update conversion.
+The command map in `data/commands.json` routes natural-language intents to skill files and optional specialist definitions. These are not terminal executables. Plugin invocation: `/app-store-aeo:aeo <intent>`. Manual Claude: `/aeo <intent>`. Codex: invoke `$claude-aeo`, then describe the intent.
+
+| Intent | Input | Action |
+| --- | --- | --- |
+| audit | Listing JSON and optional supporting evidence | Cross-store audit and prioritized plan |
+| playstore | Listing JSON | Google Play metadata review |
+| appstore | Listing JSON or Apple app ID | Apple metadata review; public lookup when requested |
+| reviews | Normalized CSV | Local rating summary, then model-assisted themes and reply drafts |
+| keywords | Supplied keywords and listing | Intent and placement hypotheses |
+| vitals | Listing JSON with measured percentages | Local threshold checks; missing metrics remain unknown |
+| geo | App website URL or supplied page | AI discovery-readiness review, subject to host tools |
+| screenshots | Supplied assets | Visual review when supported, otherwise an asset brief |
+| competitor | App IDs or supplied competitor data | Positioning review without invented rank/volume metrics |
+| localization | Listing and target locales | Adapt copy with per-field character counts |
+| monetization | Supplied reviews and paywall evidence | Friction review |
+| release-notes | Verified changes | Release copy drafts |
+| flow | Listing and supporting evidence | Staged audit and experimentation workflow |
+| policy | Listing and app behavior evidence | Source-backed policy risks; no approval guarantee |
+| experiments | Store, supported surface, traffic and baseline | Test brief and sample-size estimate with assumptions |
+| report | Listing JSON | `python scripts/audit_report.py listing.json --format markdown` or `--format json` |
+| compare | Before and after listing JSON | `python scripts/listing_diff.py before.json after.json` |
+
+All workflows preserve the user's configured model. No command authorizes automatic store mutation. See [data formats](DATA_FORMATS.md) and [sources](SOURCES.md).

@@ -1,0 +1,87 @@
+[
+  {
+    "command": "audit",
+    "skill": "skills/aeo/SKILL.md",
+    "agent": null
+  },
+  {
+    "command": "playstore",
+    "skill": "skills/aeo-playstore/SKILL.md",
+    "agent": "agents/aeo-playstore.md"
+  },
+  {
+    "command": "appstore",
+    "skill": "skills/aeo-appstore/SKILL.md",
+    "agent": "agents/aeo-appstore.md"
+  },
+  {
+    "command": "reviews",
+    "skill": "skills/aeo-reviews/SKILL.md",
+    "agent": "agents/aeo-reviews.md"
+  },
+  {
+    "command": "keywords",
+    "skill": "skills/aeo-keywords/SKILL.md",
+    "agent": "agents/aeo-keywords.md"
+  },
+  {
+    "command": "vitals",
+    "skill": "skills/aeo-vitals/SKILL.md",
+    "agent": "agents/aeo-vitals.md"
+  },
+  {
+    "command": "geo",
+    "skill": "skills/aeo-geo/SKILL.md",
+    "agent": "agents/aeo-geo.md"
+  },
+  {
+    "command": "screenshots",
+    "skill": "skills/aeo-screenshots/SKILL.md",
+    "agent": "agents/aeo-screenshots.md"
+  },
+  {
+    "command": "competitor",
+    "skill": "skills/aeo-competitor/SKILL.md",
+    "agent": "agents/aeo-competitor.md"
+  },
+  {
+    "command": "monetization",
+    "skill": "skills/aeo-monetization/SKILL.md",
+    "agent": "agents/aeo-monetization.md"
+  },
+  {
+    "command": "release-notes",
+    "skill": "skills/aeo-release-notes/SKILL.md",
+    "agent": null
+  },
+  {
+    "command": "flow",
+    "skill": "skills/aeo-flow/SKILL.md",
+    "agent": null
+  },
+  {
+    "command": "localization",
+    "skill": "skills/aeo-localization/SKILL.md",
+    "agent": "agents/aeo-localization.md"
+  },
+  {
+    "command": "policy",
+    "skill": "skills/aeo-policy/SKILL.md",
+    "agent": "agents/aeo-policy.md"
+  },
+  {
+    "command": "experiments",
+    "skill": "skills/aeo-experiments/SKILL.md",
+    "agent": "agents/aeo-experiments.md"
+  },
+  {
+    "command": "report",
+    "skill": "skills/aeo-reporting/SKILL.md",
+    "agent": "agents/aeo-reporting.md"
+  },
+  {
+    "command": "compare",
+    "skill": "skills/aeo-reporting/SKILL.md",
+    "agent": "agents/aeo-reporting.md"
+  }
+]

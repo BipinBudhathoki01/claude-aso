@@ -5,7 +5,7 @@
     "name": "Claude AEO"
   },
   "metadata": {
-    "description": "Universal App Ecosystem & Store Optimization (AEO/ASO) plugin for Claude Code. 12 sub-skills and 10 specialized sub-agents for Google Play Store, Apple App Store, review management, Android Vitals, and AI discovery (GEO)."
+    "description": "Model-independent app store optimization skill pack: 15 specialist skills, one hub, and 13 specialist agents for listings, reviews, vitals, localization, policy, experiments, and reports."
   },
   "plugins": [
     {

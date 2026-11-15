@@ -26,3 +26,5 @@ Route `/aeo` commands to the modular sub-skills under `skills/aeo-*/SKILL.md` an
 When the host cannot delegate, apply the specialist checklists sequentially. Never claim an agent, live lookup, or test ran unless it actually did. Accept plain-language requests on runtimes without slash commands.
 
 See `skills/aeo/SKILL.md` for full routing rules and `CLAUDE.md` for hard Google Play and Apple App Store character constraints.
+
+Read `data/commands.json` to route commands to skills and specialists. New reporting, comparison, policy-review, and experiment-planning workflows are documented in `docs/COMMANDS.md`.
