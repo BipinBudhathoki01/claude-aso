@@ -1,13 +1,13 @@
 {
-  "name": "app-store-aeo",
-  "version": "0.2.0",
-  "description": "Comprehensive App Ecosystem & Store Optimization (AEO/ASO) plugin for Claude Code, Cursor, Codex, and OpenClaw. Covers Google Play Store, Apple App Store, review triage & compliant replies, Android Vitals, keyword clustering, screenshot conversion QA, monetization paywalls, and AI Answer Engine (GEO) app discovery.",
+  "name": "app-store-aso",
+  "version": "0.3.0",
+  "description": "App Store Optimization (ASO) skills for Google Play and Apple App Store: listing audits, competitor discovery, ranking evidence, keyword planning, reviews, policy checks, experiments, and reports. Uses the AI model configured in your runtime.",
   "author": {
-    "name": "Claude AEO Contributors"
+    "name": "Claude ASO Contributors"
   },
   "license": "MIT",
   "keywords": [
-    "aeo",
+    "aso",
     "aso",
     "app-store-optimization",
     "google-play-store",
@@ -19,6 +19,6 @@
     "geo",
     "claude-code-skill"
   ],
-  "repository": "https://github.com/BipinBudhathoki01/claude-aeo",
-  "homepage": "https://github.com/BipinBudhathoki01/claude-aeo"
+  "repository": "https://github.com/BipinBudhathoki01/claude-aso",
+  "homepage": "https://github.com/BipinBudhathoki01/claude-aso"
 }

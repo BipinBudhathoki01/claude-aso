@@ -1,21 +1,21 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "claude-aeo-marketplace",
+  "name": "claude-aso-marketplace",
   "owner": {
-    "name": "Claude AEO"
+    "name": "Claude ASO"
   },
   "metadata": {
-    "description": "Model-independent app store optimization skill pack: 15 specialist skills, one hub, and 13 specialist agents for listings, reviews, vitals, localization, policy, experiments, and reports."
+    "description": "App Store Optimization skill pack: 16 specialist skills, one hub, and 14 specialist agents for Google Play and Apple App Store listings, competitors, ranking research, reviews, experiments, and reports."
   },
   "plugins": [
     {
-      "name": "app-store-aeo",
+      "name": "app-store-aso",
       "source": "./",
       "description": "Manage Play Store and App Store listings, audit character budgets, analyze & reply to reviews, optimize keyword rankings, and boost AI assistant citations.",
       "category": "marketing",
       "keywords": [
         "aso",
-        "aeo",
+        "aso",
         "play-store",
         "app-store",
         "reviews",

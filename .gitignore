@@ -6,3 +6,8 @@ venv/
 .DS_Store
 Thumbs.db
 *.log
+
+# Local app audits and private exports are never part of the skill pack.
+audits/
+.private/
+reports/private/

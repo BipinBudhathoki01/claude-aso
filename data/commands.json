@@ -1,87 +1,92 @@
 [
   {
     "command": "audit",
-    "skill": "skills/aeo/SKILL.md",
+    "skill": "skills/aso/SKILL.md",
     "agent": null
   },
   {
     "command": "playstore",
-    "skill": "skills/aeo-playstore/SKILL.md",
-    "agent": "agents/aeo-playstore.md"
+    "skill": "skills/aso-playstore/SKILL.md",
+    "agent": "agents/aso-playstore.md"
   },
   {
     "command": "appstore",
-    "skill": "skills/aeo-appstore/SKILL.md",
-    "agent": "agents/aeo-appstore.md"
+    "skill": "skills/aso-appstore/SKILL.md",
+    "agent": "agents/aso-appstore.md"
   },
   {
     "command": "reviews",
-    "skill": "skills/aeo-reviews/SKILL.md",
-    "agent": "agents/aeo-reviews.md"
+    "skill": "skills/aso-reviews/SKILL.md",
+    "agent": "agents/aso-reviews.md"
   },
   {
     "command": "keywords",
-    "skill": "skills/aeo-keywords/SKILL.md",
-    "agent": "agents/aeo-keywords.md"
+    "skill": "skills/aso-keywords/SKILL.md",
+    "agent": "agents/aso-keywords.md"
   },
   {
     "command": "vitals",
-    "skill": "skills/aeo-vitals/SKILL.md",
-    "agent": "agents/aeo-vitals.md"
+    "skill": "skills/aso-vitals/SKILL.md",
+    "agent": "agents/aso-vitals.md"
   },
   {
     "command": "geo",
-    "skill": "skills/aeo-geo/SKILL.md",
-    "agent": "agents/aeo-geo.md"
+    "skill": "skills/aso-geo/SKILL.md",
+    "agent": "agents/aso-geo.md"
   },
   {
     "command": "screenshots",
-    "skill": "skills/aeo-screenshots/SKILL.md",
-    "agent": "agents/aeo-screenshots.md"
+    "skill": "skills/aso-screenshots/SKILL.md",
+    "agent": "agents/aso-screenshots.md"
   },
   {
     "command": "competitor",
-    "skill": "skills/aeo-competitor/SKILL.md",
-    "agent": "agents/aeo-competitor.md"
+    "skill": "skills/aso-competitor/SKILL.md",
+    "agent": "agents/aso-competitor.md"
   },
   {
     "command": "monetization",
-    "skill": "skills/aeo-monetization/SKILL.md",
-    "agent": "agents/aeo-monetization.md"
+    "skill": "skills/aso-monetization/SKILL.md",
+    "agent": "agents/aso-monetization.md"
   },
   {
     "command": "release-notes",
-    "skill": "skills/aeo-release-notes/SKILL.md",
+    "skill": "skills/aso-release-notes/SKILL.md",
     "agent": null
   },
   {
     "command": "flow",
-    "skill": "skills/aeo-flow/SKILL.md",
+    "skill": "skills/aso-flow/SKILL.md",
     "agent": null
   },
   {
     "command": "localization",
-    "skill": "skills/aeo-localization/SKILL.md",
-    "agent": "agents/aeo-localization.md"
+    "skill": "skills/aso-localization/SKILL.md",
+    "agent": "agents/aso-localization.md"
   },
   {
     "command": "policy",
-    "skill": "skills/aeo-policy/SKILL.md",
-    "agent": "agents/aeo-policy.md"
+    "skill": "skills/aso-policy/SKILL.md",
+    "agent": "agents/aso-policy.md"
   },
   {
     "command": "experiments",
-    "skill": "skills/aeo-experiments/SKILL.md",
-    "agent": "agents/aeo-experiments.md"
+    "skill": "skills/aso-experiments/SKILL.md",
+    "agent": "agents/aso-experiments.md"
   },
   {
     "command": "report",
-    "skill": "skills/aeo-reporting/SKILL.md",
-    "agent": "agents/aeo-reporting.md"
+    "skill": "skills/aso-reporting/SKILL.md",
+    "agent": "agents/aso-reporting.md"
   },
   {
     "command": "compare",
-    "skill": "skills/aeo-reporting/SKILL.md",
-    "agent": "agents/aeo-reporting.md"
+    "skill": "skills/aso-reporting/SKILL.md",
+    "agent": "agents/aso-reporting.md"
+  },
+  {
+    "command": "competitor-lookup",
+    "skill": "skills/aso-competitor-lookup/SKILL.md",
+    "agent": "agents/aso-competitor-lookup.md"
   }
 ]

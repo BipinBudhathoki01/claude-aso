@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import sys
 
-from aeo_lint import FIELDS, LIMITS, lint_listing
+from aso_lint import FIELDS, LIMITS, lint_listing
 
 
 def compare(before: dict, after: dict) -> dict:

@@ -16,7 +16,7 @@ def load(name):
     return module
 
 
-lint = load('aeo_lint').lint_listing
+lint = load('aso_lint').lint_listing
 
 
 class PackTests(unittest.TestCase):
@@ -24,7 +24,7 @@ class PackTests(unittest.TestCase):
         self.assertEqual(lint(json.loads((ROOT / 'examples/listing.json').read_text())), [])
 
     def test_all_limits_at_boundary_and_over(self):
-        module = load('aeo_lint')
+        module = load('aso_lint')
         for field, (store, key) in module.FIELDS.items():
             maximum = module.LIMITS[store][key]
             with self.subTest(field=field):
@@ -89,11 +89,11 @@ class PackTests(unittest.TestCase):
                     command = [bash, str(ROOT / 'install.sh'), runtime, directory]
                 first = subprocess.run(command, capture_output=True, text=True)
                 self.assertEqual(first.returncode, 0, first.stderr)
-                target = Path(directory) / ('aeo' if runtime == 'claude' else 'claude-aeo')
+                target = Path(directory) / ('aso' if runtime == 'claude' else 'claude-aso')
                 self.assertTrue((target / 'SKILL.md').is_file())
-                self.assertTrue((target / 'scripts/aeo_lint.py').is_file())
+                self.assertTrue((target / 'scripts/aso_lint.py').is_file())
                 self.assertTrue((target / 'data/store-limits.json').is_file())
-                self.assertTrue((target / 'agents/aeo-playstore.md').is_file())
+                self.assertTrue((target / 'agents/aso-playstore.md').is_file())
                 self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
 
 

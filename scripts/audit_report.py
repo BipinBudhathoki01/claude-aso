@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import sys
 
-from aeo_lint import FIELDS, LIMITS, lint_listing
+from aso_lint import FIELDS, LIMITS, lint_listing
 
 
 def build_report(listing: dict) -> dict:

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0
+
+- Rename the product, repository, plugin, commands, scripts, agents, skills, and installers to Claude ASO.
+- Add competitor lookup and ranking research: 14 agents, 16 specialist skills plus the hub, and 9 helpers.
+- Add timestamped Apple competitor discovery, source URLs, missing-data handling, and concrete improvement planning without invented rankings.
+- Add community reporting links and contributor-friendly repository settings.
+- Expand automated coverage to 31 tests.
+
 ## 0.2.0
 
 - Add policy, experiment-planning, and reporting specialists: 13 agents and 15 specialist skills plus the hub.

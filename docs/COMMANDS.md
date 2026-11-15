@@ -1,6 +1,6 @@
 # Command reference
 
-The command map in `data/commands.json` routes natural-language intents to skill files and optional specialist definitions. These are not terminal executables. Plugin invocation: `/app-store-aeo:aeo <intent>`. Manual Claude: `/aeo <intent>`. Codex: invoke `$claude-aeo`, then describe the intent.
+The command map in `data/commands.json` routes natural-language intents to skill files and optional specialist definitions. These are not terminal executables. Plugin invocation: `/app-store-aso:aso <intent>`. Manual Claude: `/aso <intent>`. Codex: invoke `$claude-aso`, then describe the intent.
 
 | Intent | Input | Action |
 | --- | --- | --- |
@@ -12,6 +12,7 @@ The command map in `data/commands.json` routes natural-language intents to skill
 | vitals | Listing JSON with measured percentages | Local threshold checks; missing metrics remain unknown |
 | geo | App website URL or supplied page | AI discovery-readiness review, subject to host tools |
 | screenshots | Supplied assets | Visual review when supported, otherwise an asset brief |
+| competitor-lookup | Target ID/package, queries, storefront, optional rank screenshots/exports | Discover rivals, separate position evidence from API order, and propose measurable actions |
 | competitor | App IDs or supplied competitor data | Positioning review without invented rank/volume metrics |
 | localization | Listing and target locales | Adapt copy with per-field character counts |
 | monetization | Supplied reviews and paywall evidence | Friction review |

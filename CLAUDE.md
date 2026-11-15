@@ -1,4 +1,4 @@
-# CLAUDE.md — Claude AEO Workspace Memory
+# CLAUDE.md — Claude ASO Workspace Memory
 
 ## Hard Store Constraints (Enforce on Every Edit)
 

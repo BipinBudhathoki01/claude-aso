@@ -11,7 +11,7 @@ if (-not $DestinationRoot) {
     } else { $ConfigRoot = Join-Path $env:USERPROFILE '.claude' }
     $DestinationRoot = Join-Path $ConfigRoot 'skills'
 }
-$Name = if ($Runtime -eq 'codex') { 'claude-aeo' } else { 'aeo' }
+$Name = if ($Runtime -eq 'codex') { 'claude-aso' } else { 'aso' }
 $Target = Join-Path $DestinationRoot $Name
 if (Test-Path -LiteralPath $Target) { throw "Destination already exists: $Target. Back it up or remove it before reinstalling." }
 New-Item -ItemType Directory -Path $Target -Force | Out-Null
@@ -19,6 +19,6 @@ foreach ($Entry in @('SKILL.md', 'CLAUDE.md', 'AGENTS.md', 'LICENSE', 'skills', 
     Copy-Item -LiteralPath (Join-Path $Here $Entry) -Destination $Target -Recurse
 }
 if ($Runtime -eq 'claude') {
-    Copy-Item -LiteralPath (Join-Path $Here 'skills/aeo/SKILL.md') -Destination (Join-Path $Target 'SKILL.md') -Force
+    Copy-Item -LiteralPath (Join-Path $Here 'skills/aso/SKILL.md') -Destination (Join-Path $Target 'SKILL.md') -Force
 }
 Write-Host "Installed to $Target. Restart your AI runtime to discover the skill."
