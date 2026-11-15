@@ -14,6 +14,24 @@ Audit Google Play and Apple App Store listings, find wasted keyword space, revie
 
 Claude Code uses your configured Claude model. Codex uses your configured model. Other compatible agents can read the same skill files. No mandatory model API key, Gemini dependency, web app, or hosted service. Your host runtime's normal billing, permissions, and data handling apply.
 
+## See a real check
+
+![Animated local listing check on fictional sample data](assets/listing-demo.gif)
+
+The included fictional example has a Play title at **49 / 30 characters** and redundant Apple keywords. The corrected example has **zero linter findings**. These are deterministic checks, not measured ranking or conversion gains.
+
+Try it without an AI account (Python 3.10+):
+
+```sh
+git clone https://github.com/BipinBudhathoki01/claude-aso.git
+cd claude-aso
+python scripts/aso_lint.py examples/listing-before.json
+python scripts/aso_lint.py examples/listing.json
+python scripts/audit_report.py examples/listing.json --format markdown
+```
+
+The first lint command intentionally exits 1 to demonstrate a critical finding; the corrected example exits 0. [See the reproducible demo](examples/quick-demo.md). For recommendations beyond these local checks, install the skill in your existing AI runtime below.
+
 ## What it does
 
 - **Listing checks:** supplied character budgets, keyword redundancy, release copy, and store-specific recommendations.
