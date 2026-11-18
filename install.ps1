@@ -15,10 +15,22 @@ $Name = if ($Runtime -eq 'codex') { 'claude-aso' } else { 'aso' }
 $Target = Join-Path $DestinationRoot $Name
 if (Test-Path -LiteralPath $Target) { throw "Destination already exists: $Target. Back it up or remove it before reinstalling." }
 New-Item -ItemType Directory -Path $Target -Force | Out-Null
-foreach ($Entry in @('SKILL.md', 'CLAUDE.md', 'AGENTS.md', 'LICENSE', 'requirements-google-play.txt', 'skills', 'agents', 'data', 'scripts', 'templates', 'extensions', 'docs', 'examples')) {
+foreach ($Entry in @('SKILL.md', 'CLAUDE.md', 'AGENTS.md', 'LICENSE', 'requirements-google-play.txt', 'skills', 'agents', 'codex-agents', 'data', 'scripts', 'templates', 'extensions', 'docs', 'examples')) {
     Copy-Item -LiteralPath (Join-Path $Here $Entry) -Destination $Target -Recurse
 }
 if ($Runtime -eq 'claude') {
     Copy-Item -LiteralPath (Join-Path $Here 'skills/aso/SKILL.md') -Destination (Join-Path $Target 'SKILL.md') -Force
+} else {
+    $CodexRoot = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE '.codex' }
+    $CodexAgentDir = Join-Path $CodexRoot 'agents'
+    New-Item -ItemType Directory -Path $CodexAgentDir -Force | Out-Null
+    foreach ($CodexAgentProfile in Get-ChildItem -LiteralPath (Join-Path $Here 'codex-agents') -Filter '*.toml' -File) {
+        $ProfileTarget = Join-Path $CodexAgentDir $CodexAgentProfile.Name
+        if (Test-Path -LiteralPath $ProfileTarget) {
+            Write-Warning "Preserving existing Codex agent profile: $ProfileTarget"
+        } else {
+            Copy-Item -LiteralPath $CodexAgentProfile.FullName -Destination $ProfileTarget
+        }
+    }
 }
 Write-Host "Installed to $Target. Restart your AI runtime to discover the skill."

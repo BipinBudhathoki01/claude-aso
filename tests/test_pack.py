@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -83,11 +84,18 @@ class PackTests(unittest.TestCase):
             self.skipTest('No installer shell available')
         for runtime in ['claude', 'codex']:
             with self.subTest(runtime=runtime), tempfile.TemporaryDirectory() as directory:
+                codex_home = Path(directory) / 'codex-home'
+                environment = os.environ.copy()
+                if runtime == 'codex':
+                    environment['CODEX_HOME'] = str(codex_home)
+                    existing_agents = codex_home / 'agents'
+                    existing_agents.mkdir(parents=True)
+                    (existing_agents / 'aso_playstore.toml').write_text('custom profile\n', encoding='utf-8')
                 if shell:
                     command = [shell, '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', str(ROOT / 'install.ps1'), '-Runtime', runtime, '-DestinationRoot', directory]
                 else:
                     command = [bash, str(ROOT / 'install.sh'), runtime, directory]
-                first = subprocess.run(command, capture_output=True, text=True)
+                first = subprocess.run(command, capture_output=True, text=True, env=environment)
                 self.assertEqual(first.returncode, 0, first.stderr)
                 target = Path(directory) / ('aso' if runtime == 'claude' else 'claude-aso')
                 self.assertTrue((target / 'SKILL.md').is_file())
@@ -97,7 +105,11 @@ class PackTests(unittest.TestCase):
                 self.assertTrue((target / 'requirements-google-play.txt').is_file())
                 self.assertTrue((target / 'data/store-limits.json').is_file())
                 self.assertTrue((target / 'agents/aso-playstore.md').is_file())
-                self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
+                self.assertTrue((target / 'codex-agents/aso_playstore.toml').is_file())
+                if runtime == 'codex':
+                    self.assertEqual((codex_home / 'agents/aso_playstore.toml').read_text(encoding='utf-8'), 'custom profile\n')
+                    self.assertTrue((codex_home / 'agents/aso_appstore.toml').is_file())
+                self.assertNotEqual(subprocess.run(command, capture_output=True, env=environment).returncode, 0)
 
 
 if __name__ == '__main__':
