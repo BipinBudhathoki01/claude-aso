@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -76,25 +77,43 @@ class PackTests(unittest.TestCase):
             self.assertIn('name:', frontmatter)
             self.assertIn('description:', frontmatter)
 
-    def test_installers_copy_complete_pack_without_overwriting(self):
-        shell = shutil.which('pwsh') or shutil.which('powershell')
-        bash = shutil.which('bash')
-        if not shell and not bash:
-            self.skipTest('No installer shell available')
+    def _assert_installer_behavior(self, shell_name, shell):
         for runtime in ['claude', 'codex']:
-            with self.subTest(runtime=runtime), tempfile.TemporaryDirectory() as directory:
-                if shell:
-                    command = [shell, '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', str(ROOT / 'install.ps1'), '-Runtime', runtime, '-DestinationRoot', directory]
+            with self.subTest(shell=shell_name, runtime=runtime), tempfile.TemporaryDirectory() as directory:
+                if shell_name == 'bash':
+                    command = [shell, str(ROOT / 'install.sh'), runtime, directory]
                 else:
-                    command = [bash, str(ROOT / 'install.sh'), runtime, directory]
+                    command = [shell, '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', str(ROOT / 'install.ps1'), '-Runtime', runtime, '-DestinationRoot', directory]
                 first = subprocess.run(command, capture_output=True, text=True)
                 self.assertEqual(first.returncode, 0, first.stderr)
                 target = Path(directory) / ('aso' if runtime == 'claude' else 'claude-aso')
-                self.assertTrue((target / 'SKILL.md').is_file())
-                self.assertTrue((target / 'scripts/aso_lint.py').is_file())
-                self.assertTrue((target / 'data/store-limits.json').is_file())
-                self.assertTrue((target / 'agents/aso-playstore.md').is_file())
-                self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
+                for entry in ['SKILL.md', 'CLAUDE.md', 'AGENTS.md', 'LICENSE', 'skills', 'agents', 'data', 'scripts', 'templates', 'extensions', 'docs', 'examples']:
+                    self.assertTrue((target / entry).exists(), entry)
+                lint_command = [
+                    sys.executable,
+                    str(target / 'scripts/aso_lint.py'),
+                    str(target / 'examples/listing.json'),
+                ]
+                usable = subprocess.run(lint_command, cwd=directory, capture_output=True, text=True)
+                self.assertEqual(usable.returncode, 0, usable.stderr)
+
+                sentinel = target / 'do-not-overwrite.txt'
+                sentinel.write_text('custom installation', encoding='utf-8')
+                second = subprocess.run(command, capture_output=True, text=True)
+                self.assertNotEqual(second.returncode, 0)
+                self.assertEqual(sentinel.read_text(encoding='utf-8'), 'custom installation')
+
+    def test_bash_installers(self):
+        bash = shutil.which('bash')
+        if not bash:
+            self.skipTest('Bash unavailable; skipping Bash installer behavior')
+        self._assert_installer_behavior('bash', bash)
+
+    def test_powershell_installers(self):
+        powershell = shutil.which('pwsh') or shutil.which('powershell')
+        if not powershell:
+            self.skipTest('PowerShell unavailable; skipping PowerShell installer behavior')
+        self._assert_installer_behavior('powershell', powershell)
 
 
 if __name__ == '__main__':
