@@ -23,3 +23,7 @@ rating,body,version,store
 The helper reports sample count, mean rating, 1–2 star count, and counts by rating/version/store. Empty exports return zero counts and a null average. Invalid ratings or malformed rows stop with an error. Review bodies are not included in the aggregate output. The sample is not necessarily representative of the app's full user base.
 
 No topic detection or sentiment inference is performed by the CSV helper. Ask your existing AI runtime to interpret the supplied text separately when needed.
+
+## Google Play listing-performance CSV
+
+`play_listing_performance.py` accepts Play Console exports with `Date`, `Store listing visitors`, and either `Click-through rate` or legacy `Store listing conversion rate`. It preserves other columns as dimensions, normalizes decimal fractions to percent, and avoids cross-segment totals when multiple rows share a date. Example and setup: [Google Play data](GOOGLE_PLAY_DATA.md).

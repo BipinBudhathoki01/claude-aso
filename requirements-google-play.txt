@@ -1,0 +1,2 @@
+# Optional dependency for scripts/play_vitals.py; core tools remain standard-library only.
+google-auth[requests]>=2.0,<3

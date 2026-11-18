@@ -15,7 +15,7 @@ $Name = if ($Runtime -eq 'codex') { 'claude-aso' } else { 'aso' }
 $Target = Join-Path $DestinationRoot $Name
 if (Test-Path -LiteralPath $Target) { throw "Destination already exists: $Target. Back it up or remove it before reinstalling." }
 New-Item -ItemType Directory -Path $Target -Force | Out-Null
-foreach ($Entry in @('SKILL.md', 'CLAUDE.md', 'AGENTS.md', 'LICENSE', 'skills', 'agents', 'data', 'scripts', 'templates', 'extensions', 'docs', 'examples')) {
+foreach ($Entry in @('SKILL.md', 'CLAUDE.md', 'AGENTS.md', 'LICENSE', 'requirements-google-play.txt', 'skills', 'agents', 'data', 'scripts', 'templates', 'extensions', 'docs', 'examples')) {
     Copy-Item -LiteralPath (Join-Path $Here $Entry) -Destination $Target -Recurse
 }
 if ($Runtime -eq 'claude') {
