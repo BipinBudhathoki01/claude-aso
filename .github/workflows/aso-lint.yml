@@ -22,6 +22,8 @@ jobs:
           python3 -m json.tool .claude-plugin/plugin.json > /dev/null
           python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
           python3 -m json.tool data/store-limits.json > /dev/null
+      - name: Validate Codex agent profiles
+        run: python3 -c 'import pathlib, tomllib; [tomllib.loads(path.read_text(encoding="utf-8")) for path in pathlib.Path("codex-agents").glob("*.toml")]'
       - name: Check Python & Bash script syntax
         run: |
           python3 -m py_compile scripts/aso_lint.py scripts/fetch_appstore.py

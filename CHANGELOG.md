@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Add Claude Code plugin and Codex native specialist orchestration with a shared audit-result contract and sequential fallback.
+- Add an offline-evidence ASO audit route and install Codex agent profiles without overwriting existing user profiles.
+
 ## 0.3.0
 
 - Rename the product, repository, plugin, commands, scripts, agents, skills, and installers to Claude ASO.

@@ -6,6 +6,11 @@ import sys
 import tempfile
 import unittest
 
+try:
+    import tomllib
+except ModuleNotFoundError:
+    tomllib = None
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from audit_report import build_report, markdown
@@ -91,6 +96,23 @@ class WorkflowTests(unittest.TestCase):
             self.assertTrue((ROOT / route['skill']).is_file())
             if route['agent']:
                 self.assertTrue((ROOT / route['agent']).is_file())
+            if route.get('codexAgent'):
+                profile = ROOT / 'codex-agents' / f"{route['codexAgent']}.toml"
+                self.assertTrue(profile.is_file(), route['codexAgent'])
+                if tomllib:
+                    config = tomllib.loads(profile.read_text(encoding='utf-8'))
+                    self.assertEqual(config['name'], route['codexAgent'])
+                    self.assertNotIn('model', config)
+
+    def test_offline_audit_uses_a_dedicated_no_web_agent(self):
+        route = next(route for route in json.loads((ROOT / 'data/commands.json').read_text()) if route['command'] == 'offline-audit')
+        self.assertEqual(route['skill'], 'skills/aso-offline/SKILL.md')
+        self.assertEqual(route['agent'], 'agents/aso-offline-audit.md')
+        self.assertEqual(route['codexAgent'], 'aso_offline_audit')
+        agent = (ROOT / route['agent']).read_text(encoding='utf-8')
+        frontmatter = agent.split('---', 2)[1]
+        self.assertNotIn('WebFetch', frontmatter)
+        self.assertIn('offline', agent.lower())
 
     def test_report_cli_works_from_another_directory(self):
         with tempfile.TemporaryDirectory() as directory:

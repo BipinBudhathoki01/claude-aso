@@ -2,6 +2,8 @@
 
 - **Skill not visible:** restart the runtime. For Codex confirm `SKILL.md`, `scripts/`, and `data/` are together under `$CODEX_HOME/skills/claude-aso` or `~/.codex/skills/claude-aso`. For manual Claude use `~/.claude/skills/aso`.
 - **Plugin command not found:** plugin ID is `app-store-aso`; use `/app-store-aso:aso`. Repository and marketplace names differ from the plugin ID.
+- **Codex ASO agents not offered:** restart Codex, confirm the profiles exist under `$CODEX_HOME/agents` (default `~/.codex/agents`), and trust the project if Codex requests it. The installer preserves same-named custom profiles. If multi-agent support is unavailable, ask `$claude-aso` to apply the specialists sequentially.
+- **Need a local-only audit:** invoke `aso offline-audit` and provide local evidence files. This avoids live data lookups, but Claude/Codex may still send prompts to the model provider configured in the host runtime.
 - **Installer destination already exists:** back up custom changes, then deliberately replace the old installation. The installer refuses to overwrite it automatically.
 - **PowerShell execution policy blocks the installer:** inspect it first. If you choose to run it, use a process-scoped invocation such as `powershell -ExecutionPolicy Bypass -File ./install.ps1 -Runtime codex`.
 - **Python command not found:** install Python 3.10+. Use `python3` on systems where `python` is unavailable.

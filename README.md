@@ -10,7 +10,7 @@ Open-source app store optimization inside the AI agent you already use.
 
 Audit Google Play and Apple App Store listings, find wasted keyword space, review stability metrics, organize user feedback, and prepare a measurable improvement plan.
 
-**14 specialist agents / 16 specialist skills + 1 hub / 18 command intents / 11 Python helpers**
+**14 specialist agents / 17 specialist skills + 1 hub / 19 command intents / 11 Python helpers**
 
 Claude Code uses your configured Claude model. Codex uses your configured model. Other compatible agents can read the same skill files. No mandatory model API key, Gemini dependency, web app, or hosted service. Your host runtime's normal billing, permissions, and data handling apply.
 
@@ -63,6 +63,8 @@ Then ask the plugin hub:
 
 The plugin ID is `app-store-aso`; the repository is `claude-aso`. This avoids Claude's reserved third-party plugin-name prefix.
 
+The plugin provides native Claude Code specialist subagents. Use `/app-store-aso:aso offline-audit` for a local-evidence-only audit.
+
 ### Codex
 
 Clone the pack:
@@ -84,7 +86,7 @@ Or Windows PowerShell:
 ./install.ps1 -Runtime codex
 ```
 
-Restart Codex, invoke `$claude-aso`, and ask it to audit your listing file. The full pack installs to `~/.codex/skills/claude-aso`, respecting `CODEX_HOME` when set. It inherits the model configured in Codex.
+The installer also places non-overwriting native specialist profiles in `$CODEX_HOME/agents` (or `~/.codex/agents`). Restart Codex, invoke `$claude-aso`, and ask it to audit your listing file. The full pack installs to `~/.codex/skills/claude-aso`, respecting `CODEX_HOME` when set. Profiles inherit the model and permissions configured in Codex; when subagent support is unavailable, the hub uses sequential checklists.
 
 ### Claude Code manual installation
 
@@ -117,7 +119,7 @@ These are specialist instruction files, not 14 separately hosted models. The hos
 | [`aso-experiments`](agents/aso-experiments.md) | Experiment planner | `aso experiments` |
 | [`aso-reporting`](agents/aso-reporting.md) | Metadata reports and revision comparisons | `aso report`, `aso compare` |
 
-The 16 specialist skills add release-note and FLOW workflows alongside these roles. One hub routes requests. A full audit can delegate relevant checks when the runtime supports agents; otherwise it applies the same checklists sequentially. It must report only work actually performed.
+The 17 specialist skills add release-note, FLOW, and offline-audit workflows alongside these roles. One hub routes requests. A full audit delegates only relevant checks when the runtime supports agents; otherwise it applies the same checklists sequentially. It must report only work actually performed.
 
 ## Commands
 
@@ -126,6 +128,7 @@ These are agent request intents. In the Claude plugin, append the intent after `
 | Intent and input | Output |
 | --- | --- |
 | `aso audit listing.json` | Prioritized cross-store findings and evidence gaps |
+| `aso offline-audit listing.json` | Local-evidence-only audit using sequential focused checklists; no live lookups |
 | `aso playstore listing.json` | Play listing recommendations and character counts |
 | `aso appstore listing.json` | Apple listing and keyword recommendations |
 | `aso reviews reviews.csv` | Rating summary, model-generated themes, reply drafts |
@@ -144,7 +147,7 @@ These are agent request intents. In the Claude plugin, append the intent after `
 | `aso report listing.json` | Offline Markdown/JSON metadata report |
 | `aso compare before.json after.json` | Changed fields, budgets, introduced/resolved findings |
 
-[Full command reference](docs/COMMANDS.md) · [Routing map](data/commands.json)
+[Full command reference](docs/COMMANDS.md) · [Agent orchestration](docs/AGENT_ORCHESTRATION.md) · [Routing map](data/commands.json)
 
 ## See the output
 

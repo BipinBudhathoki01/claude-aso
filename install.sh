@@ -14,10 +14,23 @@ if [ -e "$target" ]; then
   exit 1
 fi
 mkdir -p "$target"
-for entry in SKILL.md CLAUDE.md AGENTS.md LICENSE requirements-google-play.txt skills agents data scripts templates extensions docs examples; do
+for entry in SKILL.md CLAUDE.md AGENTS.md LICENSE requirements-google-play.txt skills agents codex-agents data scripts templates extensions docs examples; do
   cp -R "${script_dir}/${entry}" "$target/"
 done
 if [ "$runtime" = "claude" ]; then
   cp "${script_dir}/skills/aso/SKILL.md" "$target/SKILL.md"
+else
+  codex_home="${CODEX_HOME:-${HOME}/.codex}"
+  codex_agent_dir="${codex_home}/agents"
+  mkdir -p "$codex_agent_dir"
+  for source in "${script_dir}"/codex-agents/*.toml; do
+    [ -e "$source" ] || continue
+    profile="${codex_agent_dir}/$(basename "$source")"
+    if [ -e "$profile" ]; then
+      echo "Preserving existing Codex agent profile: $profile" >&2
+    else
+      cp "$source" "$profile"
+    fi
+  done
 fi
 echo "Installed to $target. Restart your AI runtime to discover the skill."

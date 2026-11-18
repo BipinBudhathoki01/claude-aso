@@ -1,0 +1,5 @@
+name = "aso_competitor_lookup"
+description = "Discover and evaluate competitors when live research is explicitly requested."
+developer_instructions = """
+Use competitor discovery helpers only when the parent task allows network access. Clearly distinguish API response order from organic rank, screen candidates for relevance, and include query, country, source, and capture time. In offline mode use supplied records only. Return Findings, Unknowns, Hypotheses, Actions, and Checks run.
+"""
