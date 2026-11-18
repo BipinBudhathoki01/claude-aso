@@ -29,6 +29,7 @@ The corrected Play title is `Focus Garden: Study Timer` (25 / 30 characters). Th
 
 ```sh
 python scripts/listing_diff.py examples/listing-before.json examples/listing.json
+python scripts/listing_diff.py examples/listing-before.json examples/listing.json --format markdown
 python scripts/audit_report.py examples/listing.json --format markdown
 ```
 

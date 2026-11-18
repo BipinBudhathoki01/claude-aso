@@ -14,7 +14,7 @@ if [ -e "$target" ]; then
   exit 1
 fi
 mkdir -p "$target"
-for entry in SKILL.md CLAUDE.md AGENTS.md LICENSE skills agents data scripts templates extensions docs examples; do
+for entry in SKILL.md CLAUDE.md AGENTS.md LICENSE requirements-google-play.txt skills agents data scripts templates extensions docs examples; do
   cp -R "${script_dir}/${entry}" "$target/"
 done
 if [ "$runtime" = "claude" ]; then

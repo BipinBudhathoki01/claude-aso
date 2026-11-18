@@ -21,6 +21,8 @@ The command map in `data/commands.json` routes natural-language intents to skill
 | policy | Listing and app behavior evidence | Source-backed policy risks; no approval guarantee |
 | experiments | Store, supported surface, traffic and baseline | Test brief and sample-size estimate with assumptions |
 | report | Listing JSON | `python scripts/audit_report.py listing.json --format markdown` or `--format json` |
-| compare | Before and after listing JSON | `python scripts/listing_diff.py before.json after.json` |
+| compare | Before and after listing JSON | `python scripts/listing_diff.py before.json after.json --format markdown` (or `--format json`) |
 
 All workflows preserve the user's configured model. No command authorizes automatic store mutation. See [data formats](DATA_FORMATS.md) and [sources](SOURCES.md).
+
+For Google Play data, see [Play Console performance exports and Android vitals API setup](GOOGLE_PLAY_DATA.md). Listing-performance metrics come from a Play Console CSV export; the optional Reporting API helper returns Android vitals only.

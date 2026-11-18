@@ -8,7 +8,7 @@ Partial listings are accepted. Reports explicitly list missing text fields. Miss
 
 `aso_lint.py` exits 0 for no critical findings, 1 for critical findings, and 2 for invalid input. Report, comparison, and review-summary helpers exit 0 when a report was generated, even if it includes findings, and 2 for invalid input. Inspect their structured results; report generation is not a release gate.
 
-`listing_diff.py` reports added, modified, and removed fields, the exact before/after values, character counts where applicable, introduced/resolved lint findings, and all remaining findings. Resolved findings can result from removing a field; inspect removals before concluding the new listing is better. Comparisons include source text: redact private data before sharing.
+`listing_diff.py` reports added, modified, and removed fields, the exact before/after values, character counts where applicable, introduced/resolved lint findings, and all remaining findings. Use `--format markdown` for a shareable report or `--format json` for structured output. Invalid JSON roots are rejected with exit code 2. Resolved findings can result from removing a field; inspect removals before concluding the new listing is better. Comparisons include source text: redact private data before sharing.
 
 ## Review CSV
 
@@ -23,3 +23,7 @@ rating,body,version,store
 The helper reports sample count, mean rating, 1–2 star count, and counts by rating/version/store. Empty exports return zero counts and a null average. Invalid ratings or malformed rows stop with an error. Review bodies are not included in the aggregate output. The sample is not necessarily representative of the app's full user base.
 
 No topic detection or sentiment inference is performed by the CSV helper. Ask your existing AI runtime to interpret the supplied text separately when needed.
+
+## Google Play listing-performance CSV
+
+`play_listing_performance.py` accepts Play Console exports with `Date`, `Store listing visitors`, and either `Click-through rate` or legacy `Store listing conversion rate`. It preserves other columns as dimensions, normalizes decimal fractions to percent, and avoids cross-segment totals when multiple rows share a date. Example and setup: [Google Play data](GOOGLE_PLAY_DATA.md).

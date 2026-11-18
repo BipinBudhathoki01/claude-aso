@@ -9,7 +9,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from audit_report import build_report, markdown
-from listing_diff import compare
+from listing_diff import compare, markdown as comparison_markdown
 from review_summary import summarize
 
 
@@ -44,6 +44,22 @@ class WorkflowTests(unittest.TestCase):
 
     def test_unchanged_listing_has_no_changes(self):
         self.assertEqual(compare({'iosName': 'Timer'}, {'iosName': 'Timer'})['changes'], [])
+
+    def test_comparison_markdown_shows_copy_budgets_and_findings(self):
+        report = compare({'iosName': 'Timer'}, {'iosName': 'x' * 31})
+        output = comparison_markdown(report)
+        self.assertIn('| iosName | modified | Timer |', output)
+        self.assertIn('5 / 30 | 31 / 30', output)
+        self.assertIn('Introduced findings', output)
+
+    def test_comparison_markdown_escapes_table_content(self):
+        report = compare({'iosName': 'Timer'}, {'iosName': 'Study | Timer <Plus>'})
+        output = comparison_markdown(report)
+        self.assertIn(r'Study \| Timer &lt;Plus&gt;', output)
+
+    def test_comparison_rejects_non_object_json_roots(self):
+        with self.assertRaisesRegex(ValueError, 'JSON object'):
+            compare([], {'iosName': 'Timer'})
 
     def test_csv_summary_aggregates_sample_without_review_text(self):
         report = summarize(ROOT / 'examples/reviews.csv')
@@ -89,6 +105,26 @@ class WorkflowTests(unittest.TestCase):
             result = subprocess.run([sys.executable, str(ROOT / 'scripts/audit_report.py'), str(path)], capture_output=True, text=True)
         self.assertEqual(result.returncode, 2)
         self.assertIn('JSON object', json.loads(result.stderr)['error'])
+
+    def test_compare_cli_invalid_root_returns_actionable_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            before = Path(directory) / 'before.json'
+            after = Path(directory) / 'after.json'
+            before.write_text('[]', encoding='utf-8')
+            after.write_text('{"iosName":"Timer"}', encoding='utf-8')
+            result = subprocess.run([sys.executable, str(ROOT / 'scripts/listing_diff.py'), str(before), str(after)], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('JSON object', json.loads(result.stderr)['error'])
+
+    def test_compare_cli_renders_markdown(self):
+        with tempfile.TemporaryDirectory() as directory:
+            before = Path(directory) / 'before.json'
+            after = Path(directory) / 'after.json'
+            before.write_text('{"iosName":"Timer"}', encoding='utf-8')
+            after.write_text('{"iosName":"Timer Plus"}', encoding='utf-8')
+            result = subprocess.run([sys.executable, str(ROOT / 'scripts/listing_diff.py'), str(before), str(after), '--format', 'markdown'], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('# Listing comparison', result.stdout)
 
 
 if __name__ == '__main__':

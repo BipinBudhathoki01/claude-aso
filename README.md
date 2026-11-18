@@ -10,7 +10,7 @@ Open-source app store optimization inside the AI agent you already use.
 
 Audit Google Play and Apple App Store listings, find wasted keyword space, review stability metrics, organize user feedback, and prepare a measurable improvement plan.
 
-**14 specialist agents / 16 specialist skills + 1 hub / 18 command intents / 9 Python helpers**
+**14 specialist agents / 16 specialist skills + 1 hub / 18 command intents / 11 Python helpers**
 
 Claude Code uses your configured Claude model. Codex uses your configured model. Other compatible agents can read the same skill files. No mandatory model API key, Gemini dependency, web app, or hosted service. Your host runtime's normal billing, permissions, and data handling apply.
 
@@ -40,6 +40,7 @@ The first lint command intentionally exits 1 to demonstrate a critical finding; 
 - **Conversion:** screenshot briefs, monetization feedback, and experiment plans with explicit assumptions.
 - **Policy and quality:** source-backed claim review and checks against supplied Android vitals.
 - **Reports:** reproducible Markdown/JSON metadata reports and before/after listing comparisons.
+- **Play Console data:** analyze official listing-performance CSV exports and optionally query Android vitals through Google's Reporting API.
 
 This is an early community release. The helpers are tested; model judgment and runtime behavior need real-world validation. Recommendations require human review. No ranking gains, store approval, or AI citations are guaranteed.
 
@@ -155,6 +156,7 @@ python scripts/audit_report.py examples/listing.json --format markdown
 python scripts/audit_report.py examples/listing.json --format json
 python scripts/listing_diff.py before.json after.json
 python scripts/review_summary.py examples/reviews.csv
+python scripts/play_listing_performance.py examples/play-listing-performance.csv --format markdown
 ```
 
 The included sample produces these real character budgets:
@@ -171,6 +173,8 @@ The included sample produces these real character budgets:
 
 The review CSV sample contains 3 synthetic reviews, with an average rating of 3.667 and one 1–2 star review. The helper aggregates data; theme and sentiment interpretation belongs to the user's model. Reports check supplied fields only, not full submission readiness.
 
+For real Play Console listing performance, export its report CSV and use `play_listing_performance.py`. The optional Google API connector reads crash and ANR vitals; the API does not provide listing visitors or click-through rate. Setup and permissions are documented in [Google Play data](docs/GOOGLE_PLAY_DATA.md).
+
 Other helpers:
 
 ```sh
@@ -179,6 +183,7 @@ python scripts/launch_checklist.py 2026-12-01
 python scripts/fetch_appstore.py 324684580 us
 python scripts/competitor_gap.py "focus timer"
 python scripts/competitor_lookup.py --term "study timer" --country np --target-id 1234567890
+python scripts/play_vitals.py --package com.example.app --start 2026-11-01 --end 2026-11-07
 ```
 
 The final three access Apple's public iTunes APIs. Competitor lookup records source URLs and capture time; API result order is not verified store rank. See [competitor research](docs/COMPETITOR_RESEARCH.md) for position evidence and actionable comparisons. The sample-size calculator is a rough planning estimate, not a significance test. See [data formats](docs/DATA_FORMATS.md) and [store sources](docs/SOURCES.md).
