@@ -2,6 +2,8 @@
 
 Use `aso competitor-lookup` to discover relevant rivals and decide what to improve. Use `aso competitor` for a deeper teardown of already-selected rivals. Both use your AI runtime's configured model.
 
+The [fictional worked report](../examples/competitor-research-report.md) shows how to turn a discovery sample into actions and validation checks.
+
 ## Live Apple discovery
 
 ```sh
